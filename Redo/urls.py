@@ -24,6 +24,6 @@ urlpatterns = router.urls
 
 urlpatterns += [
     path('admin/', admin.site.urls),
-    path('api/login/', Login.as_view(), name='login'),
+    path('api/login', Login.as_view(), name='login'),
     path('api/get_users', GetUsers.as_view(), name='get_users'),
 ]
