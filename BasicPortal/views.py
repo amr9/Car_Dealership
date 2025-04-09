@@ -52,3 +52,12 @@ class Logout(APIView):
             token.delete()
             return Response(data={"Message": "Logged out with grace"}, status=status.HTTP_200_OK)
         return Response(data={"Error": "The Token does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+
+class Register(APIView):
+    permission_classes = [AllowAny]
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        return Response(data={"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)

@@ -14,6 +14,7 @@ class UserTestCase(APITestCase):
 
     def test_get_users_no_token(self):
         response = self.client.get('/api/get_users')
+
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_get_users_token(self):
